@@ -193,8 +193,8 @@ const Home = ({ user }) => {
         message: text,
         time: new Date().getTime(),
       });
-      setText("");
     }
+    setText("");
   };
 
   const handleDrawerOpen = () => {
