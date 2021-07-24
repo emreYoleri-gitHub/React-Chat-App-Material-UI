@@ -177,7 +177,7 @@ const Home = ({ user }) => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    if (text.length && text !== " " ) {
+    if (text.length && text !== " ") {
       await db.collection(`${user.email}-messages`).add({
         sender: user.displayName,
         senderMail: user.email,
