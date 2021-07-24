@@ -177,22 +177,24 @@ const Home = ({ user }) => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    await db.collection(`${user.email}-messages`).add({
-      sender: user.displayName,
-      senderMail: user.email,
-      receiverMail: currentUser.email,
-      message: text,
-      time: new Date().getTime(),
-    });
+    if (text.length && text !== " ") {
+      await db.collection(`${user.email}-messages`).add({
+        sender: user.displayName,
+        senderMail: user.email,
+        receiverMail: currentUser.email,
+        message: text,
+        time: new Date().getTime(),
+      });
 
-    await db.collection(`${currentUser.email}-messages`).add({
-      sender: user.displayName,
-      senderMail: user.email,
-      receiverMail: currentUser.email,
-      message: text,
-      time: new Date().getTime(),
-    });
-    setText("");
+      await db.collection(`${currentUser.email}-messages`).add({
+        sender: user.displayName,
+        senderMail: user.email,
+        receiverMail: currentUser.email,
+        message: text,
+        time: new Date().getTime(),
+      });
+      setText("");
+    }
   };
 
   const handleDrawerOpen = () => {
